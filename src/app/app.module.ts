@@ -13,10 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { CrudContactsComponent } from './pages/crud-contacts/crud-contacts.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { CrudContactsComponent } from './pages/crud-contacts/crud-contacts.compo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
@@ -36,7 +41,13 @@ import { CrudContactsComponent } from './pages/crud-contacts/crud-contacts.compo
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
+  ],
+  exports: [
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
