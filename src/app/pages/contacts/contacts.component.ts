@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ContactsComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['name', 'cellphone', 'email'];
+  displayedColumns: string[] = ['name', 'cellphone', 'email', 'action'];
   dataSource: MatTableDataSource<Contact>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -40,6 +40,14 @@ export class ContactsComponent implements AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  public edit(row: Contact): void {
+    console.log('ROW', row);
+  }
+
+  public delete(id: number): void {
+    console.log('ID', id);
   }
 
   private getContacts(): Observable<Contact[]> {

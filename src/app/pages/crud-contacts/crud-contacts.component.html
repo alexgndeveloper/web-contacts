@@ -1,62 +1,70 @@
 <mat-card>
-  <mat-card-title>Contact</mat-card-title>
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Company</mat-label>
-      <input matInput value="Google">
-    </mat-form-field>
+  <mat-card-title>Contacto</mat-card-title>
+  <form [formGroup]="formGroup">
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>First name</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Long Last Name That Will Be Truncated</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+    <div class="col-sm-12">
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
 
-    <p>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Address</mat-label>
-        <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+    <div class="col-md-12">
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Movíl</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput>
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Address 2</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-    </p>
+    </div>
 
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>City</mat-label>
-            <input matInput placeholder="Ex. San Francisco">
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>State</mat-label>
-            <input matInput placeholder="Ex. California">
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Postal Code</mat-label>
-            <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
-            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+    <ng-container formArrayName="address">
+      <ng-container *ngFor="let lessonForm of lessons.controls; let i = index">
+          <div class="lesson-form-row" [formGroup]="lessonForm">
+              <mat-form-field appearance="fill">
+                  <input matInput
+                         
+                         placeholder="Lesson title">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                  <mat-select 
+                          placeholder="Lesson level">
+                      <mat-option value="beginner">Beginner</mat-option>
+                      <mat-option value="intermediate">Intermediate</mat-option>
+                      <mat-option value="advanced">Advanced</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-icon class="delete-btn">delete_forever</mat-icon>
+          </div>
+      </ng-container>
+  </ng-container>
+
+  <button mat-mini-fab (click)="addLesson()">
+      <mat-icon class="add-course-btn">add</mat-icon>
+  </button>
+
+
   </form>
   <mat-card-actions align="end">
     <button mat-raised-button color="primary" cdkFocusInitial>Save</button>
